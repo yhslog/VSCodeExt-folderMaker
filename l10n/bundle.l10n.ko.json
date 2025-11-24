@@ -1,0 +1,12 @@
+{
+  "prompt.enterFolderName": "새 폴더명을 입력하세요",
+  "placeholder.selectTemplate": "템플릿을 선택하세요",
+  "message.filesCreated": "다음 파일이 생성되었습니다: {0}",
+  "message.noFilesCreated": "생성된 파일이 없습니다.",
+  "error.creationFailed": "생성 중 오류: {0}",
+  "command.helloWorld": "Y 폴더 템플릿: Hello World",
+  "command.createFromTemplate": "y-template으로 생성",
+  "config.templates.description": "전역 템플릿 (.vscode/y-folder-template.json에 의해 재정의됨)",
+  "config.file.path.description": "새 폴더 내의 상대 파일 경로",
+  "config.file.content.description": "초기 파일 내용 (선택사항)"
+}

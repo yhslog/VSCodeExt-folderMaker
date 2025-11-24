@@ -1,0 +1,5 @@
+{
+  "command.helloWorld": "Folder Maker: Hello World",
+  "command.createFromTemplate": "Create from folder template",
+  "config.templates.description": "Global templates (overridden by .vscode/folder-maker.json)"
+}

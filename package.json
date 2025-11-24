@@ -1,0 +1,149 @@
+{
+  "name": "folder-maker",
+  "displayName": "Folder Maker",
+  "description": "Create folders and files from templates with variable substitution",
+  "version": "0.0.1",
+  "publisher": "yhslog",
+  "license": "MIT",
+  "icon": "media/icon.png",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yhslog/VSCodeExt-folderMaker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yhslog/VSCodeExt-folderMaker/issues"
+  },
+  "homepage": "https://github.com/yhslog/VSCodeExt-folderMaker#readme",
+  "engines": {
+    "vscode": "^1.87.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "folderMaker.helloWorld",
+        "title": "%command.helloWorld%"
+      },
+      {
+        "command": "folderMaker.createFromTemplate",
+        "title": "%command.createFromTemplate%"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "folderMaker.createFromTemplate",
+          "when": "explorerResourceIsFolder && resourceScheme == file",
+          "group": "navigation@5"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "folderMaker.createFromTemplate",
+        "key": "ctrl+alt+f",
+        "mac": "cmd+alt+f",
+        "when": "resourceScheme == file"
+      }
+    ],
+    "configuration": {
+      "title": "Folder Maker",
+      "properties": {
+        "folderMaker.templates": {
+          "type": "array",
+          "default": [],
+          "description": "%config.templates.description%",
+          "items": {
+            "$ref": "#/definitions/template"
+          }
+        }
+      },
+      "definitions": {
+        "file": {
+          "type": "object",
+          "required": [
+            "path"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "Relative file path inside the new folder"
+            },
+            "content": {
+              "type": "string",
+              "description": "Initial file content (optional)"
+            }
+          }
+        },
+        "template": {
+          "type": "object",
+          "required": [
+            "name",
+            "files"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "files": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/file"
+              }
+            }
+          }
+        }
+      }
+    },
+    "jsonValidation": [
+      {
+        "fileMatch": [
+          "/.vscode/folder-maker.json"
+        ],
+        "url": "./schemas/templates.schema.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -w -p ./",
+    "clean": "rimraf dist",
+    "build:assets": "node scripts/gen-icon.js",
+    "lint": "eslint src --fix",
+    "lint:check": "eslint src",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\"",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "test:run": "vitest run",
+    "prepare": "lefthook install",
+    "precommit": "lefthook run pre-commit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.25",
+    "@types/vscode": "^1.87.0",
+    "@typescript-eslint/eslint-plugin": "^8.44.1",
+    "@typescript-eslint/parser": "^8.44.1",
+    "@vitest/coverage-v8": "^4.0.13",
+    "@vitest/ui": "^4.0.12",
+    "eslint": "^9.36.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "lefthook": "^2.0.4",
+    "pngjs": "^7.0.0",
+    "prettier": "^3.6.2",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.4.2",
+    "vitest": "^4.0.12"
+  }
+}

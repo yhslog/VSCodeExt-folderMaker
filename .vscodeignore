@@ -1,0 +1,44 @@
+# Workspace settings
+.vscode/**
+
+# Source code (compiled output in dist/ is used instead)
+src/**
+**/*.ts
+**/*.map
+
+# Build configuration
+tsconfig.json
+
+# Linting and formatting
+.eslintrc*
+eslint.config.mjs
+.prettierrc*
+.prettierignore
+
+# Git
+.gitignore
+.github/**
+
+# Test infrastructure
+.vscode-test/**
+coverage/**
+vitest.config.ts
+vitest.config.js
+vitest.config.js.map
+
+# Development tools
+lefthook.yml
+.claude/**
+
+# Build scripts
+scripts/**
+
+# Documentation (development)
+CLAUDE.md
+
+# Dependencies
+node_modules/**
+package-lock.json
+
+# OS files
+.DS_Store

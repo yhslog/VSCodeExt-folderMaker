@@ -1,0 +1,40 @@
+{
+  "templates": [
+    {
+      "name": "React Component",
+      "description": "TypeScript React Component + __tests__",
+      "files": [
+        {
+          "path": "index.tsx",
+          "content": "export { ${folderName|pascalCase} } from './${folderName|pascalCase}'\n"
+        },
+        {
+          "path": "${folderName|pascalCase}.tsx",
+          "content": "export const ${folderName|pascalCase} = () => {\n\n}\n"
+        },
+        {
+          "path": "__tests__/${folderName|pascalCase}.test.tsx",
+          "content": "import { render } from '@testing-library/react'\nimport { ${folderName|pascalCase} } from '../${folderName|pascalCase}'\n\ndescribe('${folderName|pascalCase}', () => {\n  it('renders', () => {\n    render(<${folderName|pascalCase} />)\n  })\n})\n"
+        }
+      ]
+    },
+    {
+      "name": "Custom Hook",
+      "description": "TypeScript Custom Hook + unit test file",
+      "files": [
+        {
+          "path": "index.ts",
+          "content": "export { ${folderName|pascalCase} } from './${folderName|pascalCase}'\n"
+        },
+        {
+          "path": "${folderName|pascalCase}.ts",
+          "content": "export const ${folderName|pascalCase} = () => {\n\n}\n"
+        },
+        {
+          "path": "${folderName|pascalCase}.test.ts",
+          "content": "import { ${folderName|pascalCase} } from './${folderName|pascalCase}'\n"
+        }
+      ]
+    }
+  ]
+}

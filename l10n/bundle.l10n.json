@@ -1,0 +1,12 @@
+{
+  "prompt.enterFolderName": "Enter new folder name",
+  "placeholder.selectTemplate": "Select a template",
+  "message.filesCreated": "The following files have been created: {0}",
+  "message.noFilesCreated": "No files were created.",
+  "error.creationFailed": "Creation failed: {0}",
+  "command.helloWorld": "Y Folder Template: Hello World",
+  "command.createFromTemplate": "Create from y-template",
+  "config.templates.description": "Global templates (overridden by .vscode/y-folder-template.json)",
+  "config.file.path.description": "Relative file path inside the new folder",
+  "config.file.content.description": "Initial file content (optional)"
+}

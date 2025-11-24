@@ -4,3 +4,25 @@ dist/
 *.vsix
 .DS_Store
 
+# Test coverage
+coverage/
+
+# IDE
+.claude/
+
+# OS files
+*.swp
+*.swo
+*~
+
+# Environment files (precaution)
+.env
+.env.local
+.env.*.local
+
+# Secrets (precaution)
+*.key
+*.pem
+*.p12
+*.pfx
+

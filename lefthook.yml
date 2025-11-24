@@ -1,0 +1,33 @@
+# Lefthook configuration
+# https://github.com/evilmartians/lefthook
+
+pre-commit:
+  parallel: false  # 순차 실행 (lint → format → test)
+
+  commands:
+    lint:
+      name: 'ESLint 검사'
+      run: npm run lint:check
+      fail_text: 'ESLint 에러 발견. npm run lint로 수정 후 다시 커밋하세요.'
+
+    format:
+      name: 'Prettier 포맷 검사'
+      run: npm run format:check
+      fail_text: 'Prettier 포맷 에러 발견. npm run format으로 수정 후 다시 커밋하세요.'
+
+    test:
+      name: '유닛 테스트 실행'
+      run: npm run test:run
+      fail_text: '테스트 실패. 테스트를 수정 후 다시 커밋하세요.'
+
+# 선택: commit-msg hook (Conventional Commits 검증)
+# commit-msg:
+#   commands:
+#     message-check:
+#       run: |
+#         if ! grep -qE '^(feat|fix|docs|style|refactor|test|chore|perf|ci|build|revert)(\(.+\))?: .+' "$1"; then
+#           echo "❌ 커밋 메시지 형식이 올바르지 않습니다."
+#           echo "형식: type(scope): subject"
+#           echo "예시: feat(template): add remote template support"
+#           exit 1
+#         fi

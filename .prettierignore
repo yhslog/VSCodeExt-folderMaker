@@ -1,0 +1,9 @@
+dist
+node_modules
+.vscode-test
+*.min.js
+*.min.css
+package-lock.json
+CHANGELOG.md
+LICENSE
+*.md
