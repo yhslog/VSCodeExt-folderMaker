@@ -2,15 +2,15 @@
   "templates": [
     {
       "name": "React Component",
-      "description": "TypeScript React 컴포넌트 + 스토리북 + 테스트",
+      "description": "TypeScript React Component + __tests__",
       "files": [
         {
-          "path": "${folderName|pascalCase}.tsx",
-          "content": "export const ${folderName|pascalCase} = () => {\n  return <div>${folderName}</div>\n}\n"
+          "path": "index.tsx",
+          "content": "export { ${folderName|pascalCase} } from './${folderName|pascalCase}'\n"
         },
         {
-          "path": "${folderName|pascalCase}.stories.tsx",
-          "content": "import { ${folderName|pascalCase} } from './${folderName|pascalCase}'\n\nexport default {\n  component: ${folderName|pascalCase}\n}\n"
+          "path": "${folderName|pascalCase}.tsx",
+          "content": "export const ${folderName|pascalCase} = () => {\n\n}\n"
         },
         {
           "path": "__tests__/${folderName|pascalCase}.test.tsx",
@@ -19,16 +19,20 @@
       ]
     },
     {
-      "name": "Node.js Service",
-      "description": "TypeScript 서비스 클래스 + 유닛 테스트",
+      "name": "Custom Hook",
+      "description": "TypeScript Custom Hook + unit test file",
       "files": [
         {
-          "path": "${folderName|camelCase}.service.ts",
-          "content": "export class ${folderName|pascalCase}Service {\n  // TODO: Implement\n}\n"
+          "path": "index.ts",
+          "content": "export { ${folderName|pascalCase} } from './${folderName|pascalCase}'\n"
         },
         {
-          "path": "${folderName|camelCase}.service.test.ts",
-          "content": "import { ${folderName|pascalCase}Service } from './${folderName|camelCase}.service'\n\ndescribe('${folderName|pascalCase}Service', () => {\n  it('should be defined', () => {\n    expect(new ${folderName|pascalCase}Service()).toBeDefined()\n  })\n})\n"
+          "path": "${folderName|pascalCase}.ts",
+          "content": "export const ${folderName|pascalCase} = () => {\n\n}\n"
+        },
+        {
+          "path": "${folderName|pascalCase}.test.ts",
+          "content": "import { ${folderName|pascalCase} } from './${folderName|pascalCase}'\n"
         }
       ]
     }
