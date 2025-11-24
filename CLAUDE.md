@@ -2,8 +2,6 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-Please answer all the questions in Korean.
-
 ## Project Overview
 
 **Folder Maker** is a VS Code extension that creates folders and files from predefined templates with variable substitution. Users can right-click on any folder in the Explorer and select "Create from folder template" to scaffold new structures.
