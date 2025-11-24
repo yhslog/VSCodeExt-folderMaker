@@ -1,49 +1,174 @@
-# folder-maker
-스마트 변수 치환을 지원하는 템플릿 기반 폴더/파일 생성 VS Code 확장 프로그램
+# Folder Maker
 
-## VS Code Extension
-- 개발 환경: TypeScript, VS Code Extension Host 디버깅 구성 포함
-- 기본 커맨드: `Folder Maker: Hello World`
-- 생성 커맨드: `Create from folder template` (Explorer 우클릭)
-- 단축키: `Ctrl+Alt+F` (Mac: `Cmd+Alt+F`)
+> Create folders and files from templates with smart variable substitution
 
-### 시작하기
-1) 의존성 설치: `npm install`
-2) 디버깅 실행: VS Code에서 `F5` (Run Extension)
-3) 명령 실행: 명령 팔레트에서 `Folder Maker: Hello World` 검색/실행
-4) 폴더 생성: 탐색기에서 폴더 우클릭 → `Create from folder template`
+🌍 **Languages:** [English](README.md) | [한국어](README.ko.md)
 
-### 스크립트
-- `npm run compile`: TypeScript 컴파일 (단발)
-- `npm run watch`: TypeScript 변경 감지 컴파일
+[![Version](https://img.shields.io/badge/version-0.0.1-blue.svg)](https://github.com/yhslog/VSCodeExt-folderMaker)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-### 패키징 (선택)
-- `vsce` 설치 후 `vsce package`로 `.vsix` 생성 가능
-- 마켓플레이스 배포 전 `publisher` 값을 `package.json`에 실제 퍼블리셔로 변경하세요
+## ✨ Features
 
-## 템플릿 사용법
-- 글로벌 설정: `settings.json`에 `folderMaker.templates` 배열 정의
-- 워크스페이스 설정: `.vscode/folder-maker.json`에 `templates` 정의 (전역보다 우선)
+- 🎯 **Template-based scaffolding** - Right-click any folder to create from templates
+- 🔄 **Smart variable substitution** - Automatic case transformations (camelCase, kebabCase, pascalCase)
+- ⚙️ **Workspace & global templates** - Project-specific or shared templates
+- 🔒 **Security-first** - Path traversal protection, injection prevention
+- 🌍 **Internationalized** - English and Korean support
 
-예시 `.vscode/folder-maker.json`:
+## 🎥 Demo
 
-```
+![Demo](media/demo.gif)
+
+> Right-click a folder → Select template → Enter name → Files created instantly
+
+## 🚀 Quick Start
+
+### Installation
+
+1. Download from [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=yhslog.folder-maker)
+2. Or install VSIX: `code --install-extension folder-maker-0.0.1.vsix`
+
+### Usage
+
+**Method 1: Context Menu**
+1. Right-click any folder in Explorer
+2. Select "Create from folder template"
+3. Choose a template
+4. Enter folder name
+5. Done! ✅
+
+**Method 2: Keyboard Shortcut**
+- Windows/Linux: `Ctrl+Alt+F`
+- macOS: `Cmd+Alt+F`
+
+**Method 3: Command Palette**
+- Press `Ctrl+Shift+P` (or `Cmd+Shift+P`)
+- Type "Create from folder template"
+
+## 📝 Template Configuration
+
+### Workspace Templates (Recommended)
+
+Create `.vscode/folder-maker.json` in your project:
+
+```json
 {
   "templates": [
     {
-      "name": "Basic Module",
-      "description": "index.ts와 테스트 파일 생성",
+      "name": "React Component",
+      "description": "TypeScript React component with test",
       "files": [
-        { "path": "index.ts", "content": "export const name='${folderName|camelCase}';\n" },
-        { "path": "__tests__/${folderName|kebabCase}.test.ts", "content": "describe('${folderName}', () => {});\n" }
+        {
+          "path": "index.tsx",
+          "content": "export { ${folderName|pascalCase} } from './${folderName|pascalCase}'\n"
+        },
+        {
+          "path": "${folderName|pascalCase}.tsx",
+          "content": "export const ${folderName|pascalCase} = () => {\n  return <div>${folderName}</div>\n}\n"
+        },
+        {
+          "path": "__tests__/${folderName|pascalCase}.test.tsx",
+          "content": "import { ${folderName|pascalCase} } from '../${folderName|pascalCase}'\n\ndescribe('${folderName|pascalCase}', () => {\n  it('renders', () => {\n    // test here\n  })\n})\n"
+        }
       ]
     }
   ]
 }
 ```
 
-지원 변수 치환:
-- `${folderName}`
-- `${folderName|kebabCase}`
-- `${folderName|camelCase}`
-- `${folderName|pascalCase}`
+### Global Templates
+
+Add to VS Code settings (`settings.json`):
+
+```json
+{
+  "folderMaker.templates": [
+    {
+      "name": "Node.js Service",
+      "description": "TypeScript service with test",
+      "files": [
+        {
+          "path": "${folderName|camelCase}.service.ts",
+          "content": "export class ${folderName|pascalCase}Service {\n  // TODO: Implement\n}\n"
+        },
+        {
+          "path": "${folderName|camelCase}.service.test.ts",
+          "content": "import { ${folderName|pascalCase}Service } from './${folderName|camelCase}.service'\n\ndescribe('${folderName|pascalCase}Service', () => {\n  it('should be defined', () => {\n    expect(new ${folderName|pascalCase}Service()).toBeDefined()\n  })\n})\n"
+        }
+      ]
+    }
+  ]
+}
+```
+
+## 🔤 Variable Substitution
+
+| Variable | Input: `UserProfile` | Output |
+|----------|---------------------|--------|
+| `${folderName}` | - | `UserProfile` |
+| `${folderName\|camelCase}` | - | `userProfile` |
+| `${folderName\|kebabCase}` | - | `user-profile` |
+| `${folderName\|pascalCase}` | - | `UserProfile` |
+
+### Examples
+
+```typescript
+// Template
+export const ${folderName|camelCase} = () => {}
+
+// Input: "MyComponent"
+// Result:
+export const myComponent = () => {}
+```
+
+## 🛡️ Security
+
+- **Path traversal protection** - Blocks `../../../etc/passwd` attacks
+- **Injection prevention** - Sanitizes `${malicious}` code
+- **Resource limits** - Max 100 files, 10MB per file, 100MB total
+
+## 📖 Documentation
+
+- [CHANGELOG](CHANGELOG.md) - Version history
+- [CLAUDE.md](CLAUDE.md) - Architecture guide
+- [LICENSE](LICENSE) - MIT License
+
+## 🔧 Development
+
+### Setup
+
+```bash
+npm install
+```
+
+### Run Extension
+
+Press `F5` in VS Code to launch Extension Development Host
+
+### Testing
+
+```bash
+npm run test:run        # Run all tests (160 tests)
+npm run test:coverage   # Generate coverage report
+npm run lint:check      # ESLint check
+npm run format:check    # Prettier check
+```
+
+### Build
+
+```bash
+npm run compile         # Compile TypeScript
+vsce package           # Create VSIX
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read [CLAUDE.md](CLAUDE.md) for development guidelines.
+
+## 📄 License
+
+[MIT](LICENSE) © 2025 yhslog
+
+## 🙏 Acknowledgments
+
+Built with [Claude Code](https://claude.com/claude-code)
