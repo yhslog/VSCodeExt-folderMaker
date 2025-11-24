@@ -2,7 +2,7 @@
   "name": "folder-maker",
   "displayName": "Folder Maker",
   "description": "Create folders and files from templates with variable substitution",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "yhslog",
   "license": "MIT",
   "icon": "media/icon.png",

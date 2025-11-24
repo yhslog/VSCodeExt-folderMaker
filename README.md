@@ -4,7 +4,6 @@
 
 🌍 **Languages:** [English](README.md) | [한국어](README.ko.md)
 
-[![Version](https://img.shields.io/badge/version-0.0.1-blue.svg)](https://github.com/yhslog/VSCodeExt-folderMaker)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 ## ✨ Features
@@ -84,16 +83,20 @@ Add to VS Code settings (`settings.json`):
 {
   "folderMaker.templates": [
     {
-      "name": "Node.js Service",
-      "description": "TypeScript service with test",
+      "name": "React Component",
+      "description": "TypeScript React component with test",
       "files": [
         {
-          "path": "${folderName|camelCase}.service.ts",
-          "content": "export class ${folderName|pascalCase}Service {\n  // TODO: Implement\n}\n"
+          "path": "index.tsx",
+          "content": "export { ${folderName|pascalCase} } from './${folderName|pascalCase}'\n"
         },
         {
-          "path": "${folderName|camelCase}.service.test.ts",
-          "content": "import { ${folderName|pascalCase}Service } from './${folderName|camelCase}.service'\n\ndescribe('${folderName|pascalCase}Service', () => {\n  it('should be defined', () => {\n    expect(new ${folderName|pascalCase}Service()).toBeDefined()\n  })\n})\n"
+          "path": "${folderName|pascalCase}.tsx",
+          "content": "export const ${folderName|pascalCase} = () => {\n  return <div>${folderName}</div>\n}\n"
+        },
+        {
+          "path": "__tests__/${folderName|pascalCase}.test.tsx",
+          "content": "import { ${folderName|pascalCase} } from '../${folderName|pascalCase}'\n\ndescribe('${folderName|pascalCase}', () => {\n  it('renders', () => {\n    // test here\n  })\n})\n"
         }
       ]
     }

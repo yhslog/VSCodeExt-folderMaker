@@ -4,7 +4,6 @@
 
 🌍 **Languages:** [English](README.md) | [한국어](README.ko.md)
 
-[![Version](https://img.shields.io/badge/version-0.0.1-blue.svg)](https://github.com/yhslog/VSCodeExt-folderMaker)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 ## ✨ 주요 기능
@@ -84,16 +83,20 @@ VS Code 설정(`settings.json`)에 추가:
 {
   "folderMaker.templates": [
     {
-      "name": "Node.js Service",
-      "description": "테스트 포함 TypeScript 서비스",
+      "name": "React Component",
+      "description": "테스트 포함 TypeScript React 컴포넌트",
       "files": [
         {
-          "path": "${folderName|camelCase}.service.ts",
-          "content": "export class ${folderName|pascalCase}Service {\n  // TODO: 구현하기\n}\n"
+          "path": "index.tsx",
+          "content": "export { ${folderName|pascalCase} } from './${folderName|pascalCase}'\n"
         },
         {
-          "path": "${folderName|camelCase}.service.test.ts",
-          "content": "import { ${folderName|pascalCase}Service } from './${folderName|camelCase}.service'\n\ndescribe('${folderName|pascalCase}Service', () => {\n  it('정의되어야 함', () => {\n    expect(new ${folderName|pascalCase}Service()).toBeDefined()\n  })\n})\n"
+          "path": "${folderName|pascalCase}.tsx",
+          "content": "export const ${folderName|pascalCase} = () => {\n  return <div>${folderName}</div>\n}\n"
+        },
+        {
+          "path": "__tests__/${folderName|pascalCase}.test.tsx",
+          "content": "import { ${folderName|pascalCase} } from '../${folderName|pascalCase}'\n\ndescribe('${folderName|pascalCase}', () => {\n  it('renders', () => {\n    // 테스트 작성\n  })\n})\n"
         }
       ]
     }
