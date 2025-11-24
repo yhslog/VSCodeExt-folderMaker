@@ -1,0 +1,5 @@
+{
+  "command.helloWorld": "폴더 메이커: Hello World",
+  "command.createFromTemplate": "폴더 템플릿으로 생성",
+  "config.templates.description": "전역 템플릿 (.vscode/folder-maker.json에 의해 재정의됨)"
+}
