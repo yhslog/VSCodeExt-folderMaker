@@ -1,0 +1,36 @@
+{
+  "templates": [
+    {
+      "name": "React Component",
+      "description": "TypeScript React 컴포넌트 + 스토리북 + 테스트",
+      "files": [
+        {
+          "path": "${folderName|pascalCase}.tsx",
+          "content": "export const ${folderName|pascalCase} = () => {\n  return <div>${folderName}</div>\n}\n"
+        },
+        {
+          "path": "${folderName|pascalCase}.stories.tsx",
+          "content": "import { ${folderName|pascalCase} } from './${folderName|pascalCase}'\n\nexport default {\n  component: ${folderName|pascalCase}\n}\n"
+        },
+        {
+          "path": "__tests__/${folderName|pascalCase}.test.tsx",
+          "content": "import { render } from '@testing-library/react'\nimport { ${folderName|pascalCase} } from '../${folderName|pascalCase}'\n\ndescribe('${folderName|pascalCase}', () => {\n  it('renders', () => {\n    render(<${folderName|pascalCase} />)\n  })\n})\n"
+        }
+      ]
+    },
+    {
+      "name": "Node.js Service",
+      "description": "TypeScript 서비스 클래스 + 유닛 테스트",
+      "files": [
+        {
+          "path": "${folderName|camelCase}.service.ts",
+          "content": "export class ${folderName|pascalCase}Service {\n  // TODO: Implement\n}\n"
+        },
+        {
+          "path": "${folderName|camelCase}.service.test.ts",
+          "content": "import { ${folderName|pascalCase}Service } from './${folderName|camelCase}.service'\n\ndescribe('${folderName|pascalCase}Service', () => {\n  it('should be defined', () => {\n    expect(new ${folderName|pascalCase}Service()).toBeDefined()\n  })\n})\n"
+        }
+      ]
+    }
+  ]
+}
